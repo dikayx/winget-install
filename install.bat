@@ -8,6 +8,7 @@ winget install Google.DriveFileStream
 winget install Microsoft.WindowsTerminal
 winget install Notepad++.Notepad++
 winget install Discord.Discord
+winget install Spotify.Spotify
 echo "...done!"
 
 echo "Installing development tools..."
