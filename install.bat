@@ -6,6 +6,7 @@ echo "Installing essential software..."
 winget install --force Google.Chrome
 winget install Google.Drive
 winget install Microsoft.WindowsTerminal
+winget install Adobe.AdobeAcrobatReaderDC
 winget install Notepad++.Notepad++
 winget install Discord.Discord
 winget install Spotify.Spotify
@@ -22,12 +23,12 @@ winget install JetBrains.IntelliJIDEA.Community
 winget install JetBrains.PyCharm.Community
 winget install Microsoft.VisualStudioCode
 :: Other tools
+winget install Git.Git
 winget install GitHub.GitHubDesktop
 winget install Postman.Postman
 winget install wsl --install
 echo "...done!"
 
 :: Other tools
-echo "Install Git manually (https://git-scm.com/downloads)."
 echo "Don't forget to install gradle (https://gradle.org/install/)"
 echo "Copy terminal settings from https://gist.github.com/dan-koller/e8eefc0d0c987f5a57666d28e6ba8cec"
