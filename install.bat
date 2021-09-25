@@ -3,8 +3,8 @@
 
 echo "Installing essential software..."
 :: Install basic programs
-winget install Google.Chrome
-winget install Google.DriveFileStream
+winget install --force Google.Chrome
+winget install Google.Drive
 winget install Microsoft.WindowsTerminal
 winget install Notepad++.Notepad++
 winget install Discord.Discord
@@ -14,7 +14,7 @@ echo "...done!"
 echo "Installing development tools..."
 :: Install development programs
 :: Runtimes
-winget install AdoptOpenJDK.OpenJDK -v 11.0.7
+winget install AdoptOpenJDK.OpenJDK.11
 winget install Python.Python
 winget install OpenJS.Nodejs
 :: IDEs & editors
