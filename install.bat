@@ -29,6 +29,9 @@ winget install Postman.Postman
 winget install wsl --install
 echo "...done!"
 
+:: Copy settings
+xcopy .\settings.json C:\Users\Daniel\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState
+
 :: Other tools
 echo "Don't forget to install gradle (https://gradle.org/install/)"
-echo "Copy terminal settings from https://gist.github.com/dan-koller/e8eefc0d0c987f5a57666d28e6ba8cec"
+echo "Install Fira Code font (available at https://fonts.google.com/?query=Nikita+Prokopov)"
