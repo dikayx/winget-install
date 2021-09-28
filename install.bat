@@ -35,3 +35,6 @@ xcopy .\settings.json C:\Users\Daniel\AppData\Local\Packages\Microsoft.WindowsTe
 :: Other tools
 echo "Don't forget to install gradle (https://gradle.org/install/)"
 echo "Install Fira Code font (available at https://fonts.google.com/?query=Nikita+Prokopov)"
+
+:: Reminders
+echo "Please restart your system now."
