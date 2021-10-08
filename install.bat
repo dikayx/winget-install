@@ -21,6 +21,7 @@ winget install OpenJS.Nodejs
 :: IDEs & editors
 winget install JetBrains.IntelliJIDEA.Community
 winget install Microsoft.VisualStudioCode
+winget install vim.vim
 :: Other tools
 winget install Git.Git
 winget install GitHub.GitHubDesktop
