@@ -20,7 +20,6 @@ winget install Python.Python
 winget install OpenJS.Nodejs
 :: IDEs & editors
 winget install JetBrains.IntelliJIDEA.Community
-winget install JetBrains.PyCharm.Community
 winget install Microsoft.VisualStudioCode
 :: Other tools
 winget install Git.Git
