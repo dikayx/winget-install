@@ -15,7 +15,7 @@ echo "...done!"
 echo "Installing development tools..."
 :: Install development programs
 :: Runtimes
-winget install AdoptOpenJDK.OpenJDK.11
+winget install --id AdoptOpenJDK.OpenJDK.11
 winget install Python.Python
 winget install OpenJS.Nodejs
 :: IDEs & editors
