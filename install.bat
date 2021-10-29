@@ -24,7 +24,6 @@ winget install Microsoft.VisualStudioCode
 winget install vim.vim
 :: Data science
 winget install -e --id Anaconda.Anaconda3
-
 :: Other tools
 winget install Git.Git
 winget install GitHub.GitHubDesktop
