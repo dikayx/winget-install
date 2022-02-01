@@ -22,6 +22,8 @@ winget install OpenJS.Nodejs
 winget install JetBrains.IntelliJIDEA.Community
 winget install Microsoft.VisualStudioCode
 winget install vim.vim
+:: Game dev
+winget install -e --id UnityTechnologies.UnityHub
 :: Data science
 winget install -e --id Anaconda.Anaconda3
 :: Other tools
