@@ -7,6 +7,7 @@ winget install --force Google.Chrome
 winget install Google.Drive
 winget install Microsoft.WindowsTerminal
 winget install Adobe.AdobeAcrobatReaderDC
+winget install -e --id geeksoftwareGmbH.PDF24Creator
 winget install Notepad++.Notepad++
 winget install Discord.Discord
 winget install Spotify.Spotify
