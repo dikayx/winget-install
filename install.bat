@@ -3,41 +3,31 @@
 
 echo "Installing essential software..."
 :: Install basic programs
-winget install --force Google.Chrome
-winget install Google.Drive
-winget install Microsoft.WindowsTerminal
-winget install Adobe.AdobeAcrobatReaderDC
-winget install -e --id geeksoftwareGmbH.PDF24Creator
-winget install Notepad++.Notepad++
-winget install Discord.Discord
-winget install Spotify.Spotify
+winget install -e --id Google.Chrome
+winget install -e --id Google.Drive
 echo "...done!"
 
 echo "Installing development tools..."
 :: Install development programs
-:: Runtimes
-winget install --id AdoptOpenJDK.OpenJDK.11
-winget install Python.Python.3
-winget install OpenJS.Nodejs
-:: IDEs & editors
-winget install JetBrains.IntelliJIDEA.Community
-winget install Microsoft.VisualStudioCode
-winget install vim.vim
-:: Data science
-winget install -e --id Anaconda.Anaconda3
-:: Other tools
-winget install Git.Git
-winget install GitHub.GitHubDesktop
-winget install Postman.Postman
-winget install wsl --install
+winget install -e --id JetBrains.IntelliJIDEA.Community
+winget install -e --id JetBrains.PyCharm.Community
+winget install -e --id Microsoft.VisualStudio.2022.Community
+winget install -e --id Microsoft.VisualStudioCode
+winget install -e --id OpenJS.NodeJS.LTS
+winget install -e --id Postman.Postman
+winget install -e --id Git.Git
+winget install -e --id GitHub.cli
 echo "...done!"
 
+echo "Configuring additional settings..."
+:: Configure git
+git config --global core.autocrlf true
 :: Copy settings
 xcopy .\settings.json C:\Users\Daniel\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState
 
 :: Other tools
-echo "Don't forget to install gradle (https://gradle.org/install/)"
-echo "Install Fira Code font (available at https://fonts.google.com/?query=Nikita+Prokopov)"
+echo "MSSQL Server can be downloaded from https://www.microsoft.com/en-us/sql-server/sql-server-downloads"
+echo "SQL Server Management Studio can be downloaded from https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver18"
 
 :: Reminders
-echo "Please restart your system now."
+echo "Installation finished. Please restart your system now."
