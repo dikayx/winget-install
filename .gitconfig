@@ -1,0 +1,8 @@
+[core]
+	editor = code
+[pull]
+	ff = only
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = true
