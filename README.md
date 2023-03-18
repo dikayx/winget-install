@@ -1,5 +1,7 @@
 # Automatic installation script for Windows
 
+**This project is no longer actively developed. I recommend you to use the improved [WinPostInstaller](https://github.com/dan-koller/WinPostInstaller).**
+
 Installation script for my personal apps on a windows system. Feel free to use and modify it depending on your needs.
 
 ## Requirements
