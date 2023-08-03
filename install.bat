@@ -23,6 +23,12 @@ winget install -e --id OpenJS.NodeJS.LTS
 winget install -e --id Postman.Postman
 winget install -e --id Git.Git
 winget install -e --id GitHub.cli
+winget install -e --id Microsoft.Azure.CosmosEmulator
+echo "...done!"
+
+echo "Installing WSL2..."
+:: Install WSL2
+wsl --install
 echo "...done!"
 
 echo "Configuring additional settings..."
