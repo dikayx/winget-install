@@ -11,6 +11,7 @@ echo "...done!"
 echo "Installing utilities..."
 :: Install utility programs
 winget install -e --id smartmontools.smartmontools
+winget install Microsoft.PowerToys --source winget
 echo "...done!"
 
 echo "Installing development tools..."
