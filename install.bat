@@ -6,6 +6,7 @@ echo "Installing essential software..."
 winget install -e --id Google.Chrome
 winget install -e --id Google.Drive
 winget install -e --id Discord.Discord
+winget install -e --id Brave.Brave
 echo "...done!"
 
 echo "Installing utilities..."
@@ -39,6 +40,9 @@ xcopy .gitconfig %userprofile%\
 echo "Please configure your git user and email:"
 echo "git config --global user.name '<your name>'"
 echo "git config --global user.email '<your email>'"
+
+echo "SQL Server may require a separate installation."
+echo "SQL Server can be downloaded from https://www.microsoft.com/en-us/sql-server/sql-server-downloads"
 
 :: Finish
 echo "Installation finished. Please restart your system now."
