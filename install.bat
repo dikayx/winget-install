@@ -5,8 +5,8 @@ echo "Installing essential software..."
 :: Install basic programs
 winget install -e --id Google.Chrome
 winget install -e --id Google.Drive
-winget install -e --id Discord.Discord
 winget install -e --id Brave.Brave
+winget install -e --id Discord.Discord
 echo "...done!"
 
 echo "Installing utilities..."
@@ -17,14 +17,21 @@ echo "...done!"
 
 echo "Installing development tools..."
 :: Install development programs
-winget install -e --id JetBrains.IntelliJIDEA.Community
-winget install -e --id Microsoft.VisualStudio.2022.Community
-winget install -e --id Microsoft.SQLServerManagementStudio
-winget install -e --id Microsoft.VisualStudioCode
 winget install -e --id Microsoft.OpenJDK.17
 winget install -e --id OpenJS.NodeJS.LTS
-winget install -e --id Postman.Postman
+winget install -e --id Python.Python.3
+winget install -e --id Microsoft.VisualStudio.2022.Community
+winget install -e --id Microsoft.VisualStudioCode
+winget install -e --id Microsoft.SQLServer.2019.Developer
+winget install -e --id Microsoft.SQLServerManagementStudio
+winget install -e --id JetBrains.PyCharm.Community
 winget install -e --id Git.Git
+echo "...done!"
+
+echo "Installing security software..."
+:: Install security programs
+winget install -e --id Maltego.Maltego
+winget install -e --id WiresharkFoundation.Wireshark
 echo "...done!"
 
 echo "Installing WSL2..."
@@ -40,9 +47,6 @@ xcopy .gitconfig %userprofile%\
 echo "Please configure your git user and email:"
 echo "git config --global user.name '<your name>'"
 echo "git config --global user.email '<your email>'"
-
-echo "SQL Server may require a separate installation."
-echo "SQL Server can be downloaded from https://www.microsoft.com/en-us/sql-server/sql-server-downloads"
 
 :: Finish
 echo "Installation finished. Please restart your system now."
