@@ -12,18 +12,19 @@ echo "...done!"
 
 echo "Installing utilities..."
 :: Install utility programs
+winget install -e --id 7zip.7zip
 winget install -e --id Microsoft.PowerToys
 winget install -e --id smartmontools.smartmontools
 echo "...done!"
 
 echo "Installing development tools..."
 :: Install development programs
+winget install -e --id Git.Git
 winget install -e --id Python.Python.3
 winget install -e --id OpenJS.NodeJS.LTS
 winget install -e --id Microsoft.OpenJDK.17
 winget install -e --id Microsoft.VisualStudioCode
 winget install -e --id Microsoft.VisualStudio.2022.Community
-winget install -e --id Git.Git
 echo "...done!"
 
 echo "Installing security software..."
