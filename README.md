@@ -9,9 +9,21 @@ Installation script for my personal apps on a windows system. Feel free to use a
 
 ### How to run
 
+> Note: I recommend to run the powershell script. However, you can also run the `install.bat` file if you prefer.
+
 -   Open a terminal with administrator privileges
--   Navigate to `install.bat` file location
+-   Navigate to `install.ps1` file location
+
+    ```powershell
+    cd winget-install
+    ```
+
 -   Run the file
+
+    ```powershell
+    powershell -ExecutionPolicy Bypass -File .\install.ps1
+    ```
+
 -   Wait\* :)
 
 _\*You may need to accept some UAC pop-ups on individual installation processes._
