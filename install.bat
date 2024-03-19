@@ -30,7 +30,6 @@ echo "...done!"
 echo "Installing security software..."
 :: Install security programs
 winget install -e --id Maltego.Maltego
-winget install -e --id WiresharkFoundation.Wireshark
 winget install -e --id PortSwigger.BurpSuite.Community
 echo "...done!"
 
@@ -39,21 +38,13 @@ echo "Installing WSL2..."
 wsl --install
 echo "...done!"
 
-echo "Installing database software..."
-:: Install database programs (may be error prone)
-winget install -e --id Microsoft.SQLServer.2022.Developer
-winget install -e --id Microsoft.SQLServerManagementStudio
-if %ERRORLEVEL% NEQ 0 (
-    echo Error: Could not install SQL Server. Please install manually.
-    echo SQL Server can be downloaded from https://www.microsoft.com/en-us/sql-server/sql-server-downloads
-)
-echo "...done!"
-
 echo "Configuring additional settings..."
 :: Copy settings
 xcopy .gitconfig %userprofile%\
+echo "...done!"
 
 :: Reminders
+echo "SQL Server Express can be downloaded from https://www.microsoft.com/en-us/sql-server/sql-server-downloads"
 echo "Please configure your git user and email:"
 echo "git config --global user.name '<your name>'"
 echo "git config --global user.email '<your email>'"

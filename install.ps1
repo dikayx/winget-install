@@ -29,7 +29,6 @@ Write-Host "...done!"
 Write-Host "Installing security software..."
 # Install security programs
 winget install -e --id Maltego.Maltego
-winget install -e --id WiresharkFoundation.Wireshark
 winget install -e --id PortSwigger.BurpSuite.Community
 Write-Host "...done!"
 
@@ -38,22 +37,13 @@ Write-Host "Installing WSL2..."
 wsl --install
 Write-Host "...done!"
 
-Write-Host "Installing database software..."
-# Install database programs (may be error prone)
-winget install -e --id Microsoft.SQLServer.2022.Developer
-winget install -e --id Microsoft.SQLServerManagementStudio
-if ($?) {
-    Write-Host "...done!"
-} else {
-    Write-Host "Error: Could not install SQL Server. Please install manually." -ForegroundColor Red
-    Write-Host "SQL Server can be downloaded from https://www.microsoft.com/en-us/sql-server/sql-server-downloads"
-}
-
 Write-Host "Configuring additional settings..."
 # Copy settings
 Copy-Item -Path .gitconfig -Destination $env:USERPROFILE -Force
+Write-Host "...done!"
 
 # Reminders
+Write-Host "SQL Server Express can be downloaded from https://www.microsoft.com/en-us/sql-server/sql-server-downloads"
 Write-Host "Please configure your git user and email:"
 Write-Host "git config --global user.name '<your name>'"
 Write-Host "git config --global user.email '<your email>'"
