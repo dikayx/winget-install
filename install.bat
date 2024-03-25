@@ -27,12 +27,6 @@ winget install -e --id Microsoft.VisualStudioCode
 winget install -e --id Microsoft.VisualStudio.2022.Community
 echo "...done!"
 
-echo "Installing security software..."
-:: Install security programs
-winget install -e --id Maltego.Maltego
-winget install -e --id PortSwigger.BurpSuite.Community
-echo "...done!"
-
 echo "Installing WSL2..."
 :: Install WSL2
 wsl --install
