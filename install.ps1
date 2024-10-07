@@ -21,12 +21,6 @@ winget install -e --id Git.Git
 winget install -e --id Python.Python.3
 winget install -e --id Microsoft.OpenJDK.17
 winget install -e --id Microsoft.VisualStudioCode
-winget install -e --id Microsoft.VisualStudio.2022.Community
-Write-Host "...done!"
-
-Write-Host "Installing WSL2..."
-# Install WSL2
-wsl --install
 Write-Host "...done!"
 
 Write-Host "Configuring additional settings..."
