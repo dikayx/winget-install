@@ -20,8 +20,10 @@ echo "Installing development tools..."
 :: Install development programs
 winget install -e --id Git.Git
 winget install -e --id Python.Python.3
+winget install -e --id OpenJS.NodeJS.LTS
 winget install -e --id Microsoft.OpenJDK.17
 winget install -e --id Microsoft.VisualStudioCode
+winget install -e --id Microsoft.VisualStudio.2022.Community
 echo "...done!"
 
 echo "Configuring additional settings..."
