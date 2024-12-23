@@ -9,7 +9,7 @@ Installation script for my personal apps on a windows system. Feel free to use a
 
 ### How to run
 
-> Note: I recommend to run the powershell script. However, you can also run the `install.bat` file if you prefer.
+> **Note**: I recommend to run the PowerShell script. However, you can also run the `install.bat` file if you prefer.
 
 -   Open a terminal with administrator privileges
 -   Navigate to `install.ps1` file location
