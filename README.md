@@ -11,10 +11,8 @@ A collection of post-install scripts for Windows using `winget` to install commo
 
 ## Usage
 
-> Note: I recommend using the PowerShell script. However, you can also run the `Install.bat` file if you prefer.
-
 1. Clone this repository to your local machine or download the ZIP file and extract it.
-2. Open a PowerShell terminal with administrative privileges.
+2. Open a PowerShell terminal with **administrative privileges**.
 3. Navigate to the directory where you cloned or extracted the repository.
 
     ```powershell
@@ -24,10 +22,8 @@ A collection of post-install scripts for Windows using `winget` to install commo
 4. Run the following command to execute the PowerShell script:
 
     ```powershell
-    powershell -ExecutionPolicy Bypass -File .\Install.ps1 --InstallPackages --EnableClassicContextMenu --ApplyTweaks --RestartSystem
+    powershell -ExecutionPolicy Bypass -File .\Setup.ps1
     ```
-
-    To learn more about the available options, run `.\Install.ps1 --Help`.
 
 5. Wait\*\* :)
 
@@ -56,6 +52,7 @@ By default, this post-installer will set up a system with my preferred applicati
 
 ### Gaming
 
+-   [Epic Games Launcher](https://www.epicgames.com/store/en-US/download) - Digital distribution platform for video games.
 -   [Steam](https://store.steampowered.com/about/) - Digital distribution platform for video games.
 
 ### Customization

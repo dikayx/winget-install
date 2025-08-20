@@ -82,6 +82,8 @@ if ($options[5].Selected) {
     $gitEmail = Read-Host "Enter your Git email"
 }
 
+# TODO: Setting the hostname, git username and email still fails
+
 # Build argument list
 $args = @()
 if ($options[0].Selected) { $args += "-InstallPackages" }

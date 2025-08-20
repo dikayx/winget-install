@@ -59,7 +59,6 @@ if ($InstallPackages) {
     .\Scripts\Packages.ps1
     if ($LASTEXITCODE -ne 0) {
         Write-Host "An error occurred while installing packages. Please check the output above." -ForegroundColor Red
-        exit 1
     } else {
         Write-Host "Packages installed successfully." -ForegroundColor Green
     }
@@ -71,7 +70,6 @@ if ($EnableClassicContextMenu) {
     .\Scripts\Restore-Classic-ContextMenu.ps1
     if ($LASTEXITCODE -ne 0) {
         Write-Host "An error occurred while enabling the classic context menu. Please check the output above." -ForegroundColor Red
-        exit 1
     } else {
         Write-Host "Classic context menu enabled successfully." -ForegroundColor Green
     }
@@ -83,7 +81,6 @@ if ($ApplyTweaks) {
     .\Scripts\Tweaks.ps1
     if ($LASTEXITCODE -ne 0) {
         Write-Host "An error occurred while applying tweaks. Please check the output above." -ForegroundColor Red
-        exit 1
     } else {
         Write-Host "Tweaks applied successfully." -ForegroundColor Green
     }
@@ -95,7 +92,6 @@ if ($Hostname -or $GitUsername -or $GitEmail) {
     .\Scripts\Settings.ps1 -Hostname $Hostname -GitUsername $GitUsername -GitEmail $GitEmail 
     if ($LASTEXITCODE -ne 0) {
         Write-Host "An error occurred while applying settings. Please check the output above." -ForegroundColor Red
-        exit 1
     } else {
         Write-Host "Settings applied successfully." -ForegroundColor Green
     }
