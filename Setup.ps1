@@ -90,9 +90,11 @@ if ($options[0].Selected) { $args += "-InstallPackages" }
 if ($options[1].Selected) { $args += "-EnableClassicContextMenu" }
 if ($options[2].Selected) { $args += "-ApplyTweaks" }
 if ($options[3].Selected) { $args += "-RestartSystem" }
-if ($hostname) { $args += "-Hostname=$hostname" }
-if ($gitUser)  { $args += "-GitUsername=$gitUser" }
-if ($gitEmail) { $args += "-GitEmail=$gitEmail" }
+
+# Set the string in quotes before adding to the args list
+if ($hostname) { $args += "-Hostname `"$hostname`"" }
+if ($gitUser)  { $args += "-GitUsername `"$gitUser`"" }
+if ($gitEmail) { $args += "-GitEmail `"$gitEmail`"" }
 
 # Show selected args
 Write-Host ""

@@ -1,5 +1,5 @@
 param(
-    [switch]$Hostname,
+    [string]$Hostname,
     [string]$GitUsername,
     [string]$GitEmail
 )
