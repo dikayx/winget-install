@@ -82,27 +82,22 @@ if ($options[5].Selected) {
     $gitEmail = Read-Host "Enter your Git email"
 }
 
-# TODO: Setting the hostname, git username and email still fails
+# Build argument hashtable
+$args = @{}
 
-# Build argument list
-$args = @()
-if ($options[0].Selected) { $args += "-InstallPackages" }
-if ($options[1].Selected) { $args += "-EnableClassicContextMenu" }
-if ($options[2].Selected) { $args += "-ApplyTweaks" }
-if ($options[3].Selected) { $args += "-RestartSystem" }
+if ($options[0].Selected) { $args.InstallPackages = $true }
+if ($options[1].Selected) { $args.EnableClassicContextMenu = $true }
+if ($options[2].Selected) { $args.ApplyTweaks = $true }
+if ($options[3].Selected) { $args.RestartSystem = $true }
 
-# Set the string in quotes before adding to the args list
-if ($hostname) { $args += "-Hostname `"$hostname`"" }
-if ($gitUser)  { $args += "-GitUsername `"$gitUser`"" }
-if ($gitEmail) { $args += "-GitEmail `"$gitEmail`"" }
+if ($hostname) { $args.Hostname = $hostname }
+if ($gitUser)  { $args.GitUsername = $gitUser }
+if ($gitEmail) { $args.GitEmail = $gitEmail }
 
-# Show selected args
-Write-Host ""
-Write-Host "Running installer with arguments:" -ForegroundColor Green
-$args | ForEach-Object { Write-Host "  $_" }
+Write-Host "`nRunning installer with arguments:" -ForegroundColor Green
+$args.GetEnumerator() | ForEach-Object { Write-Host "  -$($_.Key) $($_.Value)" }
 
-# Execute install script
+$scriptPath = Join-Path $PSScriptRoot "Install.ps1"
+
 Write-Host "Launching installer..." -ForegroundColor Green
-$psArgs = @("-ExecutionPolicy", "Bypass", "-File", ".\Install.ps1") + $args
-Start-Process powershell.exe -ArgumentList $psArgs -Wait -NoNewWindow
-
+& $scriptPath @args

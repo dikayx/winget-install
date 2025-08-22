@@ -1,12 +1,3 @@
-# TODOS:
-
-# - Check if the user is running as administrator   - OK
-# - Get the args                                    - OK
-# - Install the packages                            - OK
-# - Enable the classic context menu (if wanted)     - OK
-# - Apply additional tweaks (dark mode, etc.)       - OK
-# - Restart the system (if needed)                  - OK
-
 # Get the arguments
 param (
     [switch]$InstallPackages,
@@ -19,31 +10,31 @@ param (
     [string]$GitEmail
 )
 # Print all the arguments for debugging purposes
-Write-Host "EnableClassicContextMenu: $EnableClassicContextMenu"
-Write-Host "InstallPackages: $InstallPackages"
-Write-Host "ApplyTweaks: $ApplyTweaks"
-Write-Host "RestartSystem: $RestartSystem"
-Write-Host "Help: $Help"
-Write-Host "Hostname: $Hostname"
-Write-Host "GitUsername: $GitUsername"
-Write-Host "GitEmail: $GitEmail"
+# Write-Host "EnableClassicContextMenu: $EnableClassicContextMenu"
+# Write-Host "InstallPackages: $InstallPackages"
+# Write-Host "ApplyTweaks: $ApplyTweaks"
+# Write-Host "RestartSystem: $RestartSystem"
+# Write-Host "Help: $Help"
+# Write-Host "Hostname: $Hostname"
+# Write-Host "GitUsername: $GitUsername"
+# Write-Host "GitEmail: $GitEmail"
 
 # Print help message if the user requested it
 if ($Help) {
-    Write-Host "Usage: Install.ps1 [--InstallPackages] [--EnableClassicContextMenu] [--ApplyTweaks] [--RestartSystem] [--Help] [--Hostname <hostname>] [--GitUsername <username>] [--GitEmail <email>]"
+    Write-Host "Usage: Install.ps1 [-InstallPackages] [-EnableClassicContextMenu] [-ApplyTweaks] [-RestartSystem] [-Help] [-Hostname <hostname>] [-GitUsername <username>] [-GitEmail <email>]"
     Write-Host "Options:"
-    Write-Host "  --InstallPackages: Install the packages using the Packages.ps1 script."
-    Write-Host "  --EnableClassicContextMenu: Enable the classic context menu."
-    Write-Host "  --ApplyTweaks: Apply additional tweaks (dark mode, etc.)."
-    Write-Host "  --RestartSystem: Restart the system after installation."
-    Write-Host "  --Help: Show this help message."
-    Write-Host "  --Hostname: Set the hostname of the system."
-    Write-Host "  --GitUsername: Set the Git username."
-    Write-Host "  --GitEmail: Set the Git email."
+    Write-Host "  -InstallPackages: Install the packages using the Packages.ps1 script."
+    Write-Host "  -EnableClassicContextMenu: Enable the classic context menu."
+    Write-Host "  -ApplyTweaks: Apply additional tweaks (dark mode, etc.)."
+    Write-Host "  -RestartSystem: Restart the system after installation."
+    Write-Host "  -Help: Show this help message."
+    Write-Host "  -Hostname: Set the hostname of the system."
+    Write-Host "  -GitUsername: Set the Git username."
+    Write-Host "  -GitEmail: Set the Git email."
     Write-Host "Examples:"
-    Write-Host "  Install.ps1 --InstallPackages --EnableClassicContextMenu --ApplyTweaks"
-    Write-Host "  Install.ps1 --InstallPackages --GitUsername 'John Doe' --GitEmail '<YOUR_EMAIL>'"
-    Write-Host "  Install.ps1 --Help"
+    Write-Host "  Install.ps1 -InstallPackages -EnableClassicContextMenu -ApplyTweaks"
+    Write-Host "  Install.ps1 -InstallPackages -GitUsername 'John Doe' -GitEmail '<YOUR_EMAIL>'"
+    Write-Host "  Install.ps1 -Help"
     exit 0
 }
 
