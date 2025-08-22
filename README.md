@@ -58,7 +58,9 @@ By default, this post-installer will set up a system with my preferred applicati
 ### Customization
 
 -   Dark mode selected
+-   Classic context menu enabled
 -   Copy gitconfig to `%USERPROFILE%`
+-   Additional tweaks applied (show hidden files, etc.)
 
 ## Previous Versions
 
