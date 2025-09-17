@@ -1,3 +1,16 @@
+#####################################################################################################
+# This script sets up my Windows environment using winget.                                          #
+# It provides an interactive console UI to select options for installation and configuration.       #
+#####################################################################################################
+
+#####################################################################################################
+# Miscellanous                                                                                      #
+#####################################################################################################
+
+#####################################################################################################
+# Draw UI                                                                                           #
+#####################################################################################################
+
 Clear-Host
 
 $banner = @"
@@ -68,7 +81,6 @@ do {
 [Console]::CursorVisible = $true
 Clear-Host
 
-# Prompt for additional inputs if needed
 $hostname = ""
 $gitUser = ""
 $gitEmail = ""
@@ -82,7 +94,10 @@ if ($options[5].Selected) {
     $gitEmail = Read-Host "Enter your Git email"
 }
 
-# Build argument hashtable
+#####################################################################################################
+# Process Selections                                                                                #
+#####################################################################################################
+
 $args = @{}
 
 if ($options[0].Selected) { $args.InstallPackages = $true }
@@ -94,10 +109,29 @@ if ($hostname) { $args.Hostname = $hostname }
 if ($gitUser)  { $args.GitUsername = $gitUser }
 if ($gitEmail) { $args.GitEmail = $gitEmail }
 
-Write-Host "`nRunning installer with arguments:" -ForegroundColor Green
-$args.GetEnumerator() | ForEach-Object { Write-Host "  -$($_.Key) $($_.Value)" }
+######################################################################################################
+# Execute Installation Script                                                                        #
+######################################################################################################
 
 $scriptPath = Join-Path $PSScriptRoot "Install.ps1"
 
-Write-Host "Launching installer..." -ForegroundColor Green
 & $scriptPath @args
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Installation script encountered an error." -ForegroundColor Red
+}
+
+######################################################################################################
+# Post-Installation Message                                                                          #
+######################################################################################################
+
+if ($RestartSystem) {
+    Write-Host "Setup completed." -ForegroundColor Green
+    Write-Host "Restarting the system in 60 seconds (you can cancel with CTRL+C)..." -ForegroundColor Yellow
+    Start-Sleep -Seconds 60
+    Restart-Computer -Force
+} else {
+    Write-Host "Setup completed." -ForegroundColor Green
+    Write-Host "You may need to restart your system for some changes to take effect." -ForegroundColor Yellow
+    exit 0
+}

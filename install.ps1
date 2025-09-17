@@ -1,4 +1,12 @@
-# Get the arguments
+#####################################################################################################
+# This script will install packages, apply tweaks, and set configurations based on user input.      #
+# It can be run using the Setup script or directly with parameters.                                 #
+#####################################################################################################
+
+#####################################################################################################
+# Parameters                                                                                        #
+#####################################################################################################
+
 param (
     [switch]$InstallPackages,
     [switch]$EnableClassicContextMenu,
@@ -9,7 +17,7 @@ param (
     [string]$GitUsername,
     [string]$GitEmail
 )
-# Print all the arguments for debugging purposes
+
 # Write-Host "EnableClassicContextMenu: $EnableClassicContextMenu"
 # Write-Host "InstallPackages: $InstallPackages"
 # Write-Host "ApplyTweaks: $ApplyTweaks"
@@ -19,7 +27,10 @@ param (
 # Write-Host "GitUsername: $GitUsername"
 # Write-Host "GitEmail: $GitEmail"
 
-# Print help message if the user requested it
+#####################################################################################################
+# Show help message if the user requested it                                                        #
+#####################################################################################################
+
 if ($Help) {
     Write-Host "Usage: Install.ps1 [-InstallPackages] [-EnableClassicContextMenu] [-ApplyTweaks] [-RestartSystem] [-Help] [-Hostname <hostname>] [-GitUsername <username>] [-GitEmail <email>]"
     Write-Host "Options:"
@@ -38,65 +49,127 @@ if ($Help) {
     exit 0
 }
 
-# Check if the user is running as administrator
-if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Host "Please run this script as an administrator." -ForegroundColor Red
-    exit 1
-}
+#####################################################################################################
+# Install packages                                                                                  #
+#####################################################################################################
 
-# Install the packages using the Packages.ps1 script
 if ($InstallPackages) {
     Write-Host "Installing packages..."
-    .\Scripts\Packages.ps1
+    .\Packages.ps1
+
     if ($LASTEXITCODE -ne 0) {
         Write-Host "An error occurred while installing packages. Please check the output above." -ForegroundColor Red
-    } else {
-        Write-Host "Packages installed successfully." -ForegroundColor Green
     }
 }
 
-# Enable the classic context menu if the user wants it
+#####################################################################################################
+# Apply settings & tweaks                                                                           #
+#####################################################################################################
+
+# Classic context menu
 if ($EnableClassicContextMenu) {
     Write-Host "Enabling classic context menu..."
-    .\Scripts\Restore-Classic-ContextMenu.ps1
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "An error occurred while enabling the classic context menu. Please check the output above." -ForegroundColor Red
+
+    $regKeyPath = "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}"
+    $inprocKey = "$regKeyPath\InprocServer32"
+
+    function Restart-Explorer {
+        Write-Host "Restarting explorer.exe..."
+        Stop-Process -Name explorer -Force
+        Start-Process explorer.exe
+    }
+
+    if (Test-Path $inprocKey) {
+        Write-Host "Classic context menu is already enabled."
     } else {
-        Write-Host "Classic context menu enabled successfully." -ForegroundColor Green
+        reg.exe add "$inprocKey" /f /ve | Out-Null
+        Write-Host "Classic context menu enabled."
+        Restart-Explorer
     }
 }
 
-# Apply tweaks (Dark mode, explorer options, etc.) if the user wants them
+# System tweaks
 if ($ApplyTweaks) {
     Write-Host "Applying tweaks..."
-    .\Scripts\Tweaks.ps1
+    
+    # Enable the system dark mode
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "AppsUseLightTheme" -Value 0 -Type DWord
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "SystemUsesLightTheme" -Value 0 -Type DWord
+
+    # Explorer tweaks
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideFileExt" -Value 0 -Type DWord
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Hidden" -Value 1 -Type DWord
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "FullPathAddressBar" -Value 1 -Type DWord
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo" -Name "RestorePreviousFolder" -Value 1 -Type DWord
+
+    # Restart Explorer to apply changes
+    Stop-Process -Name explorer -Force
+    Start-Process explorer
+
     if ($LASTEXITCODE -ne 0) {
         Write-Host "An error occurred while applying tweaks. Please check the output above." -ForegroundColor Red
-    } else {
-        Write-Host "Tweaks applied successfully." -ForegroundColor Green
     }
 }
 
-# Apply settings (Hostname, Git config, etc.) if the user wants them
-if ($Hostname -or $GitUsername -or $GitEmail) {
-    Write-Host "Applying settings..."
-    .\Scripts\Settings.ps1 -Hostname $Hostname -GitUsername $GitUsername -GitEmail $GitEmail 
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "An error occurred while applying settings. Please check the output above." -ForegroundColor Red
-    } else {
-        Write-Host "Settings applied successfully." -ForegroundColor Green
+# Set Git configuration
+if ($GitUsername -or $GitEmail) {
+    try {
+        Write-Host "Setting Git configuration..."
+
+        Write-Host "Copying default Git configuration..."
+        $source = Join-Path $PSScriptRoot "Config\.gitconfig"
+        $destination = Join-Path $HOME ".gitconfig"
+
+        if (Test-Path $source) {
+            Copy-Item -Path $source -Destination $destination -Force
+        } else {
+            Write-Host "Source .gitconfig not found at $source" -ForegroundColor Red
+        }
+
+        if ($GitUsername) {
+            Write-Host "Setting Git username to '$GitUsername'..."
+            git config --global user.name "$GitUsername"
+        }
+        if ($GitEmail) {
+            Write-Host "Setting Git email to '$GitEmail'..."
+            git config --global user.email "$GitEmail"
+        }
+    } catch {
+        Write-Host "Failed to set Git configuration. Error: $_" -ForegroundColor Red
     }
 }
 
-# Restart the system if the user wants it
-if ($RestartSystem) {
-    Write-Host "Installation completed." -ForegroundColor Green
-    Write-Host "Restarting the system in 60 seconds..." -ForegroundColor Yellow
-    Write-Host "You can cancel the restart by pressing Ctrl+C." -ForegroundColor Yellow
-    Start-Sleep -Seconds 60
-    Restart-Computer -Force
+# Setting the hostname (requires admin rights)
+if ($Hostname) {
+    try {
+        Write-Host "Setting hostname to '$Hostname'..."
+
+        # Check if running as admin
+        $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+
+        if (-not $isAdmin) {
+            # Relaunch as admin automatically
+            Start-Process powershell -Verb RunAs -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"Rename-Computer -NewName '$Hostname' -Force`""
+            exit
+        }
+
+        Write-Host "You must restart your computer for the change to take effect." -ForegroundColor Yellow
+    } catch {
+        Write-Host "Failed to set hostname. Error: $_" -ForegroundColor Red
+    }
+}
+
+#####################################################################################################
+# Evaluate overall success and exit with appropriate code                                           #
+#####################################################################################################
+
+$allSuccess = $true
+if ($InstallPackages -and $LASTEXITCODE -ne 0) { $allSuccess = $false }
+if ($ApplyTweaks -and $LASTEXITCODE -ne 0) { $allSuccess = $false }
+if ($Hostname -and $LASTEXITCODE -ne 0) { $allSuccess = $false }
+if ($allSuccess) {
+    $exitCode = 0
 } else {
-    Write-Host "Installation completed." -ForegroundColor Green
-    Write-Host "You may need to restart your system for some changes to take effect." -ForegroundColor Yellow
-    exit 0
+    Write-Host "Some operations failed. Please check the output above." -ForegroundColor Red
+    $exitCode = 1
 }
