@@ -18,15 +18,6 @@ param (
     [string]$GitEmail
 )
 
-# Write-Host "EnableClassicContextMenu: $EnableClassicContextMenu"
-# Write-Host "InstallPackages: $InstallPackages"
-# Write-Host "ApplyTweaks: $ApplyTweaks"
-# Write-Host "RestartSystem: $RestartSystem"
-# Write-Host "Help: $Help"
-# Write-Host "Hostname: $Hostname"
-# Write-Host "GitUsername: $GitUsername"
-# Write-Host "GitEmail: $GitEmail"
-
 #####################################################################################################
 # Show help message if the user requested it                                                        #
 #####################################################################################################

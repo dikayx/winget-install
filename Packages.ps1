@@ -1,6 +1,6 @@
 #####################################################################################################
 # This script contains the list of packages to be installed using winget.                           #
-# It is meant to be called by the Install.ps1 script.                                           #
+# It is meant to be called by the Install.ps1 script.                                               #
 #####################################################################################################
 
 Write-Host "Starting installation of packages..."
