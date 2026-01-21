@@ -12,7 +12,6 @@ $packages = @(
     "CPUID.HWMonitor",
     "Brave.Brave",
     "Brave.BraveUpdater",
-    "Elgato.4KCaptureUtility",
     "Microsoft.PowerToys",
     "smartmontools.smartmontools",
     "Spotify.Spotify",
