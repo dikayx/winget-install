@@ -69,7 +69,3 @@ Earlier versions of this script combined Batch and PowerShell to maximize compat
 The installer has now been fully rewritten in PowerShell to leverage its advanced capabilities and deliver a more reliable, consistent experience on modern Windows versions.
 
 If you still need the old implementation, you can find it in the [legacy branch](https://github.com/dikayx/winget-install/tree/legacy) or the [legacy release](https://github.com/dikayx/winget-install/releases/tag/v0.9).
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
